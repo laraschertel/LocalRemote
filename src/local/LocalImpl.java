@@ -25,21 +25,15 @@ public class LocalImpl implements Local {
     }
 
     @Override
-    public void createFile(String filename, InputStream is) throws Exception, FileException {
-
-
-        if(filename == null){
-            throw new FileException("File name cannot be null");
-        }else if(filename.trim().length() == 0){
-            throw new FileException("File name is not valid");
-        }
-
+    public void createFile(String filename, InputStream is) throws  FileException {
 
         String path = "local/"+filename;
         File file = new File(path);
 
-        if(file.exists()){
-            throw new FileException("File already exists and cannot be overwriten");
+       if(filename.trim().length() == 0){
+            throw new FileException("File name is not valid");
+        }else if(file.exists()){
+            throw new FileException("File already exists and cannot be overwritten");
         }
 
             byte[] readBuffer = new byte[100];
@@ -66,7 +60,7 @@ public class LocalImpl implements Local {
 
 
     @Override
-    public void removeFile(String filename) throws IOException {
+    public void removeFile(String filename) throws FileException, IOException {
 
         String path = "local/"+filename;
 
@@ -74,7 +68,7 @@ public class LocalImpl implements Local {
             Files.delete(Paths.get(path));
             System.out.println("File was deleted");
         } else {
-            throw new NoSuchFileException("file does not exist");
+            throw new FileException("file does not exist");
         }
     }
 

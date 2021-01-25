@@ -7,9 +7,21 @@ import java.io.InputStream;
 
 public interface FileHandle {
 
-    void createFile(String filename, InputStream is) throws Exception, FileException;
+    /**
+     *
+     * @param filename is the name of the file that will be created
+     * @param is stream that will be read from to write in file
+     * @throws FileException if file name only has blank spaces of file already exists
+     */
+    void createFile(String filename, InputStream is) throws  FileException;
 
-    void removeFile(String filename) throws IOException;
+    /**
+     *
+     * @param filename is the name of the file to be removed
+     * @throws IOException if there is any Input/Output problems
+     * @throws FileException if file doesnt exist
+     */
+    void removeFile(String filename) throws IOException, FileException;
 
 
 }

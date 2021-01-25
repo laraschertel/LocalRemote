@@ -47,7 +47,7 @@ public class RemoteImpl implements Remote {
 
     }
     @Override
-    public void createFile(String filename, InputStream is) throws Exception, FileException {
+    public void createFile(String filename, InputStream is) throws  FileException {
 
         if(filename == null){
             throw new FileException("File name cannot be null");

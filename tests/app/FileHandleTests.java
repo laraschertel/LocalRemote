@@ -3,6 +3,7 @@ package app;
 import exceptions.FileException;
 import local.Local;
 import local.LocalImpl;
+import org.junit.Assert;
 import org.junit.Test;
 import remote.Remote;
 import remote.RemoteImpl;
@@ -30,6 +31,28 @@ public class FileHandleTests {
 
         }
 
+    @Test
+    public void goodCreateLocalFile2() throws Exception {
+
+        InputStream is = new ByteArrayInputStream(" ".getBytes());
+
+        Remote remote = new RemoteImpl();
+
+        remote.createFile("lara.txt", is);
+
+    }
+
+    @Test
+    public void goodReadFromFile() throws Exception {
+
+        InputStream is = new ByteArrayInputStream("test create local".getBytes());
+
+        Remote remote = new RemoteImpl();
+
+        remote.createFile(FILENAME, is);
+
+    }
+
 
     @Test
     public void goodCopyToRemote() throws Exception {
@@ -40,7 +63,7 @@ public class FileHandleTests {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        local.copyFileToRemote("file3.txt", baos);
+        local.copyFileToRemote("file4.txt", baos);
 
         Remote remote = new RemoteImpl();
 
@@ -49,6 +72,8 @@ public class FileHandleTests {
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
         remote.callCommandReceivedFromLocal(bais);
+
+        Assert.assertEquals(is.read(), bais.read());
 
     }
 
