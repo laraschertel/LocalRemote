@@ -30,7 +30,11 @@ public class LocalImpl implements Local {
 
         if(filename == null){
             throw new FileException("File name cannot be null");
+        }else if(filename.trim().length() == 0){
+            throw new FileException("File name is not valid");
         }
+
+
         String path = "local/"+filename;
         File file = new File(path);
 

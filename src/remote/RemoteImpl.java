@@ -51,6 +51,8 @@ public class RemoteImpl implements Remote {
 
         if(filename == null){
             throw new FileException("File name cannot be null");
+        }else if(filename.trim().length() == 0){
+            throw new FileException("File name is not valid");
         }
 
         String path = "remote/" + filename;

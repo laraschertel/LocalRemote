@@ -74,7 +74,6 @@ public class FileHandleTests {
     }
 
 
-
     @Test(expected = Exception.class)
     public void badCreateLocalFile() throws Exception {
         InputStream is = new ByteArrayInputStream("test data".getBytes());
@@ -82,6 +81,17 @@ public class FileHandleTests {
         Remote remote = new RemoteImpl();
 
         remote.createFile(null, is);
+
+    }
+
+    @Test(expected = FileException.class)
+    public void badCreateLocalFile2() throws Exception {
+        InputStream is = new ByteArrayInputStream("test data".getBytes());
+
+        Remote remote = new RemoteImpl();
+
+        // the file name cannot only have blank spaces
+        remote.createFile(" ", is);
 
     }
 
