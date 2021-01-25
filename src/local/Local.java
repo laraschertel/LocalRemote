@@ -1,12 +1,14 @@
-package app;
+package local;
 
+import app.FileHandle;
+import exceptions.FileException;
 import tcp.Connection;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public interface Local extends FileHandle{
+public interface Local extends FileHandle {
 
     /**
      *
@@ -32,6 +34,8 @@ public interface Local extends FileHandle{
      * @throws IOException
      */
     void removeRemoteFile(String filename, OutputStream os) throws IOException;
+
+    void copyFileToRemote(String filename, OutputStream os) throws IOException, FileException;
 
 
 

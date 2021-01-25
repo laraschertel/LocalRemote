@@ -1,12 +1,13 @@
-package app;
+package remote;
 
+import app.FileHandle;
 import exceptions.FileException;
 import tcp.Connection;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public interface Remote extends FileHandle{
+public interface Remote extends FileHandle {
 
     /**
      *

@@ -1,6 +1,11 @@
 package app;
 
+import exceptions.FileException;
+import local.Local;
+import local.LocalImpl;
 import org.junit.Test;
+import remote.Remote;
+import remote.RemoteImpl;
 
 import java.io.*;
 import java.nio.file.NoSuchFileException;
@@ -11,7 +16,8 @@ public class FileHandleTests {
     static final String FILENAME = "filename.txt";
     static final String FILENAME2 = "filename2.txt";
     private OutputStream os;
-    
+    private Object FileHandleImpl;
+
 
     @Test
     public void goodCreateLocalFile() throws Exception {
@@ -20,10 +26,53 @@ public class FileHandleTests {
 
         Remote remote = new RemoteImpl();
 
-        remote.createFile("melisa3.txt", is);
+        remote.createFile(FILENAME, is);
 
+        }
+
+
+    @Test
+    public void goodCopyToRemote() throws Exception {
+
+        InputStream is = new ByteArrayInputStream("test create local".getBytes());
+
+        Local local = new LocalImpl();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        local.copyFileToRemote("file3.txt", baos);
+
+        Remote remote = new RemoteImpl();
+
+        // simulated network
+        byte[] serializedBytes = baos.toByteArray();
+        ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
+
+        remote.callCommandReceivedFromLocal(bais);
 
     }
+
+    @Test (expected = FileException.class)
+    public void badCopyToRemote() throws Exception {
+
+        InputStream is = new ByteArrayInputStream("test create local".getBytes());
+
+        Local local = new LocalImpl();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        local.copyFileToRemote("fileeee.txt", baos);
+
+        Remote remote = new RemoteImpl();
+
+        // simulated network
+        byte[] serializedBytes = baos.toByteArray();
+        ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
+
+        remote.callCommandReceivedFromLocal(bais);
+
+    }
+
 
 
     @Test(expected = Exception.class)
@@ -75,7 +124,7 @@ public class FileHandleTests {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        local.createRemoteFile(FILENAME2, is,  baos);
+        local.createRemoteFile("filefile.txt" , is,  baos);
 
         // simulated network
         byte[] serializedBytes = baos.toByteArray();
