@@ -17,7 +17,7 @@ public interface Local extends FileHandle {
      * @return requests to connect to server hostname
      * @throws IOException if there is any Input/Output problems
      */
-    void connect(String hostname, int port) throws IOException;
+    Connection connect(String hostname, int port) throws IOException;
 
     /**
      * serialize the command to create a file in remote component

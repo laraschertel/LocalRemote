@@ -16,14 +16,16 @@ public class RemoteImpl implements Remote {
     private String filename;
 
     @Override
-    public void getAcceptConnection(int port) throws IOException {
+    public Connection acceptConnection(int port) throws IOException {
         Server server = new TCPConnector();
         this.connection = server.acceptConnection(port);
+
+        return this.connection;
 
     }
 
     @Override
-    public void callCommandReceivedFromLocal(InputStream is) throws Exception {
+    public void receiveAndCallCommandFromLocal(InputStream is) throws Exception {
 
         DataInputStream dis = new DataInputStream(is);
 

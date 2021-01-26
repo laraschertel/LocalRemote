@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="LocalRemote:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LocalRemote_jar</output-path>
+    <root id="archive" name="LocalRemote.jar">
+      <element id="module-output" name="LocalRemote" />
+    </root>
+  </artifact>
+</component>

@@ -15,7 +15,7 @@ public interface Remote extends FileHandle {
      * @return connection to local
      * @throws IOException
      */
-    void getAcceptConnection(int port) throws IOException;
+    Connection acceptConnection(int port) throws IOException;
 
     /**
      * deserialize the command to call a local method
@@ -24,7 +24,7 @@ public interface Remote extends FileHandle {
      * @param
      * @throws FileException
      */
-    void callCommandReceivedFromLocal(InputStream is) throws Exception;
+    void receiveAndCallCommandFromLocal(InputStream is) throws Exception;
 
 
 

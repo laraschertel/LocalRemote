@@ -71,7 +71,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
         Assert.assertEquals(is.read(), bais.read());
 
@@ -94,7 +94,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
     }
 
@@ -165,7 +165,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
     }
 
@@ -184,7 +184,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
     }
 
@@ -205,7 +205,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
     }
 
@@ -224,7 +224,7 @@ public class FileHandleTests {
         byte[] serializedBytes = baos.toByteArray();
         ByteArrayInputStream bais = new ByteArrayInputStream(serializedBytes);
 
-        remote.callCommandReceivedFromLocal(bais);
+        remote.receiveAndCallCommandFromLocal(bais);
 
     }
 }

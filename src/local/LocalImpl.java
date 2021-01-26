@@ -18,10 +18,12 @@ public class LocalImpl implements Local {
 
 
     @Override
-    public void connect(String hostname, int port) throws IOException {
+    public Connection connect(String hostname, int port) throws IOException {
 
         Client client = new TCPConnector();
         this.connection = client.connect(hostname, port);
+
+        return this.connection;
     }
 
     @Override
